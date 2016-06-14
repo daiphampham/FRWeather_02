@@ -6,15 +6,15 @@
 //  Copyright © 2016 framgia. All rights reserved.
 //
 
-#import "Weather.h"
+#import "WeatherModel.h"
 
-@implementation Weather
+@implementation WeatherModel
 
 -(instancetype)init:(NSDictionary *)jsonData {
     self = [super init];
     if (self != nil) {
         
-        Weather *weather = self;
+        WeatherModel *weather = self;
         
         NSDictionary *dicWeather = [[jsonData objectForKey:@"weather"] objectAtIndex:0];
         weather.weatherId = [dicWeather objectForKey:@"id"];
@@ -23,9 +23,12 @@
         weather.weatherIcon = [dicWeather objectForKey:@"icon"];
         
         NSDictionary *dicMain = [jsonData objectForKey:@"main"];
-        weather.temp = [dicMain objectForKey:@"temp"];
-        weather.temp_min = [dicMain objectForKey:@"temp_min"];
-        weather.temp_max = [dicMain objectForKey:@"temp_max"];
+        int temp = [[[dicMain objectForKey:@"temp"] stringValue] intValue];
+        weather.temp = [NSString stringWithFormat:@"%d",temp];
+        int temp_min = [[[dicMain objectForKey:@"temp_min"] stringValue] intValue];
+        weather.temp_min = [NSString stringWithFormat:@"%d",temp_min];
+        int temp_max = [[[dicMain objectForKey:@"temp_max"] stringValue] intValue];
+        weather.temp_max = [NSString stringWithFormat:@"%d",temp_max];
         weather.humidity = [dicMain objectForKey:@"humidity"];
         
         NSDictionary *dicWind = [jsonData objectForKey:@"wind"];

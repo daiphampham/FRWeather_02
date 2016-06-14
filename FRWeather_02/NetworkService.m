@@ -16,12 +16,10 @@
         self.sessionManager = [AFHTTPSessionManager manager];
     }
     
-    
     return  self;
 }
 
-
--(void) getData: (NSString *)url parameter: (NSDictionary *)parameter complete: (void(^)(NSDictionary *data, NSError *error))handeBlock{
+-(void)getData:(NSString *)url parameter:(NSDictionary *)parameter complete:(void(^)(NSDictionary *data, NSError *error))handeBlock{
     
     [self.sessionManager GET: url
                   parameters: nil

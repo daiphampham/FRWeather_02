@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 
-@interface HomeViewController ()
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -16,7 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self requestData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +26,43 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)requestData {
+    
+    self.apiWeather = [APIWeather new];
+    
+    [self.apiWeather getDataWeather:URL_API_WEATHER complete:^(Weather *weather) {
+        NSString *weatherName = weather.weatherName;
+        NSString *cityName = weather.nameCity;
+        NSString *temp = weather.temp_min;
+        
+        self.city.text = cityName;
+        self.weatherDescription.text = weatherName;
+        self.weatherTmp.text = [NSString stringWithFormat:@"%@ °",temp];
+    }];
+    
+    
+    [self.apiWeather getDataForecast:URL_API_FORECAST complete:^(Forecast *forecast) {
+        self.weathers = forecast.weathers;
+        [self.tableViewForecast reloadData];
+    }];
 }
-*/
+
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.weathers.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    Weather *weatherItem = [self.weathers objectAtIndex:indexPath.row];
+    cell.dayForecast.text = weatherItem.time;
+    cell.imageForecast.image = [UIImage imageNamed:weatherItem.weatherIcon];
+    cell.tempMax.text = weatherItem.temp_max;
+    cell.tempMin.text = weatherItem.temp_min;
+    
+    return  cell;
+}
 
 @end

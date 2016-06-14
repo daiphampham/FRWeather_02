@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Weather.h"
+#import "WeatherModel.h"
 
-@interface Forecast : NSObject
+@interface ForecastModel : NSObject
 
 @property (strong, nonatomic) NSMutableArray *weathers;
 
--(instancetype)init : (NSDictionary *)jsonDataForecast;
-
+-(instancetype)init:(NSDictionary *)jsonDataForecast;
 
 @end

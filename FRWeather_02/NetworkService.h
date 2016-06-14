@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSString *urlRequest;
 
 
--(void) getData: (NSString *)url parameter: (NSDictionary *)parameter complete: (void(^)(NSDictionary *data, NSError *error))handeBlock;
+-(void)getData:(NSString *)url parameter:(NSDictionary *)parameter complete:(void(^)(NSDictionary *data, NSError *error))handeBlock;
 
 
 @end

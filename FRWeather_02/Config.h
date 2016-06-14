@@ -13,6 +13,8 @@
 #define APPID @"e50aef3fd5375777356bd099d5019b52"
 
 #define URL_API_WEATHER @"http://api.openweathermap.org/data/2.5/weather?q=Hanoi&units=metric&appid=e50aef3fd5375777356bd099d5019b52"
-#define URL_API_FORECAST @"http://api.openweathermap.org/data/2.5/forecast?q=Hanoi&units=metric&mode=json&appid=e50aef3fd5375777356bd099d5019b52"
+#define URL_API_FORECAST @"http://api.openweathermap.org/data/2.5/forecast/daily?q=Hanoi&mode=json&units=metric&cnt=7&appid=e50aef3fd5375777356bd099d5019b52"
+
+
 
 #endif /* Config_h */

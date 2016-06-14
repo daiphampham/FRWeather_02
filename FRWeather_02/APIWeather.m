@@ -19,24 +19,23 @@
     return self;
 }
 
--(void) getDataWeather: (NSString *)url complete:(void(^)(Weather *weather))completeBlock{
-    
+-(void)getDataWeather:(NSString *)url complete:(void(^)(WeatherModel *weather))completeBlock{
     
     [self.networkService getData: url
                        parameter: nil
                         complete: ^(NSDictionary *data, NSError *error) {
                             
-                            Weather *weather = [[Weather alloc]init:data];
+                            WeatherModel *weather = [[WeatherModel alloc]init:data];
                             completeBlock(weather);
                         }];
 }
 
--(void) getDataForecast: (NSString *)url complete: (void(^)(Forecast *forecast))completeBlock {
+-(void)getDataForecast:(NSString *)url complete:(void(^)(ForecastModel *forecast))completeBlock {
     [self.networkService getData:url
                        parameter:nil
                         complete:^(NSDictionary *data, NSError *error) {
                             
-                            Forecast *forecast = [[Forecast alloc]init:data];
+                            ForecastModel *forecast = [[ForecastModel alloc]init:data];
                             completeBlock(forecast);
                         }];
 }

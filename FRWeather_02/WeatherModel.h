@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Weather : NSObject
+@interface WeatherModel : NSObject
 
 @property (strong, nonatomic) NSString *weatherId;
 @property (strong, nonatomic) NSString *weatherName;
@@ -27,6 +27,6 @@
 
 @property (strong, nonatomic) NSString *time;
 
--(instancetype)init : (NSDictionary *)jsonData;
+-(instancetype)init:(NSDictionary *)jsonData;
 
 @end
